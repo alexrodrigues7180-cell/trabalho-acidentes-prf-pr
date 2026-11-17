@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+# a base bruta é baixada pelo pipeline (src/etl.py -> baixar)
+data/raw/*.zip
+# CSV tratado (~16 MB) é regerado; o Parquet fica versionado
+data/processed/acidentes_pr_2021_2025.csv

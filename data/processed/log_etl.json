@@ -1,0 +1,138 @@
+[
+  {
+    "etapa": "1. Extração (5 CSVs, Brasil inteiro)",
+    "linhas_antes": 0,
+    "linhas_depois": 342670,
+    "arquivos": {
+      "2021": "a246e0d1205860a4",
+      "2022": "5ace05699b82c720",
+      "2023": "b233c47d16b3980a",
+      "2024": "905dac836867297b",
+      "2025": "52c8a631ac9d428b"
+    }
+  },
+  {
+    "etapa": "2. Padronização de texto e nomes",
+    "linhas_antes": 342670,
+    "linhas_depois": 342670,
+    "celulas_alteradas": 50,
+    "colunas_renomeadas": {
+      "data_inversa": "data",
+      "condicao_metereologica": "condicao_meteorologica",
+      "uso_solo": "area_urbana"
+    }
+  },
+  {
+    "etapa": "3. Filtragem: uf = PR e 2021–2025",
+    "linhas_antes": 342670,
+    "linhas_depois": 37062,
+    "removidas_outras_ufs": 305608,
+    "removidas_fora_periodo": 0
+  },
+  {
+    "etapa": "4. Tratamento de nulos",
+    "linhas_antes": 37062,
+    "linhas_depois": 37062,
+    "nulos_antes": 641,
+    "regras": {
+      "classificacao_acidente": "0 derivadas de mortos/feridos",
+      "regional/delegacia/uop": "12 linha(s): 1 pelo acidente mais próximo na mesma BR/município, 11 célula(s) -> 'Não informado'",
+      "condicao_meteorologica": "487 -> categoria 'Não informado' (excluídas só na hipótese que usa a coluna)",
+      "sentido_via": "70 -> categoria 'Não informado' (excluídas só na hipótese que usa a coluna)",
+      "br/km": "70 mantidos como nulo + flag localizacao_valida=False"
+    }
+  },
+  {
+    "etapa": "5. Remoção de duplicados",
+    "linhas_antes": 37062,
+    "linhas_depois": 37059,
+    "id_repetido": 0,
+    "linha_identica": 0,
+    "duplicado_logico": 3
+  },
+  {
+    "etapa": "6. Tipagem",
+    "linhas_antes": 37059,
+    "linhas_depois": 37059,
+    "ids_notacao_cientifica": 1,
+    "tipos": {
+      "id": "int64",
+      "data": "datetime64[ns]",
+      "dia_semana": "category",
+      "horario": "object",
+      "br": "Int16",
+      "km": "Float64",
+      "municipio": "category",
+      "causa_acidente": "category",
+      "tipo_acidente": "category",
+      "classificacao_acidente": "category",
+      "fase_dia": "category",
+      "sentido_via": "category",
+      "condicao_meteorologica": "category",
+      "tipo_pista": "category",
+      "tracado_via": "category",
+      "area_urbana": "boolean",
+      "pessoas": "int16",
+      "mortos": "int16",
+      "feridos_leves": "int16",
+      "feridos_graves": "int16",
+      "ilesos": "int16",
+      "ignorados": "int16",
+      "feridos": "int16",
+      "veiculos": "int16",
+      "latitude": "Float64",
+      "longitude": "Float64",
+      "regional": "category",
+      "delegacia": "category",
+      "uop": "category",
+      "ano_arquivo": "int16",
+      "localizacao_valida": "bool",
+      "data_hora": "datetime64[ns]"
+    }
+  },
+  {
+    "etapa": "7. Normalização estrutural",
+    "linhas_antes": 37059,
+    "linhas_depois": 37059,
+    "causas_distintas": "76 -> 73",
+    "tracado_combinacoes": "395 -> 166",
+    "linhas_tabela_ponte": 46991
+  },
+  {
+    "etapa": "8. Variáveis derivadas",
+    "linhas_antes": 37059,
+    "linhas_depois": 37059,
+    "novas": [
+      "ano",
+      "mes",
+      "hora",
+      "fim_de_semana",
+      "noite",
+      "fatal",
+      "grave",
+      "total_envolvidos",
+      "trecho_10km",
+      "chuva",
+      "pista_molhada_proxy"
+    ]
+  },
+  {
+    "etapa": "9. Validação",
+    "linhas_antes": 37059,
+    "linhas_depois": 37059,
+    "regras_ok": 9,
+    "falhas": []
+  },
+  {
+    "etapa": "10. Carga",
+    "linhas_antes": 37059,
+    "linhas_depois": 37059,
+    "arquivos": [
+      "acidente_tracado.csv",
+      "acidentes_pr_2021_2025.csv",
+      "acidentes_pr_2021_2025.parquet",
+      "auditoria_duplicados_removidos.csv",
+      "log_etl.json"
+    ]
+  }
+]
